@@ -11,6 +11,8 @@ import MainComponent from "./eg";
 import Profile from "./containers/user/profile";
 import ItemPage from "./containers/user/itemPage";
 import Buy from "./containers/user/buy";
+import DeliveryOrders from "./containers/admin/deliveryOrders";
+import Items from "./containers/sharedScreen/items";
 
 const AllRoute=()=> {
   const {role, token }= useSelector(state=>state.user)
@@ -40,11 +42,12 @@ const AdminScreen=()=>{
   return(
     <Routes>
     <Route path="/register" element={<Register />} />
-    <Route path="/" element={<AdminDashboard />} />
+    <Route path="/items" element={<Items />} />
     <Route path="*" element={<PageNotFound />} />
     <Route path="/profile" element={<Profile />} />
     <Route path="/login" element={<Login />} />
     <Route path="/itemPage" element={<ItemPage />} />
+    <Route path="/" element={<DeliveryOrders />} />
     <Route path="/buy" element={<Buy />} />
   </Routes>
   )

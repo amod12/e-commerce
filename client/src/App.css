@@ -488,3 +488,6 @@ select {
   color: #f3edf5 !important;
 }
 
+.drag-receiver-marker {
+  background-color: rgb(235, 13, 13);
+}

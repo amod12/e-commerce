@@ -65,7 +65,6 @@ const Register = () => {
       <div className="register-area">
       
         <div className="right-side1" >    
-        {console.log(process.env.REACT_APP_API_URL)}
             <h3>Create an account</h3>
             <Formik
               initialValues={{
@@ -75,7 +74,6 @@ const Register = () => {
                 phone: "",
                 password: "",
                 confirmPassword: "",
-                role: "",
               }}
               validationSchema={usersSchema}
               onSubmit={async(values, { resetForm }) => {

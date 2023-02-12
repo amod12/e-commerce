@@ -7,7 +7,7 @@ const usersSchema = new mongoose.Schema(
     email: { type: String },
     password: { type: String },
     avatarName: {type: String},
-    number:{ type: Number},
+    phone:{ type: Number},
     role: { type: String, default:'user' },
   },
   { collection: "users" }
