@@ -3,9 +3,7 @@ import '../App.css'
 import { Modal } from "antd";
 import CustomForm from "../components/customForm"
 import ReusableForm from "../components/reuseableForm"
-import ItemPage from '../containers/user/itemPage';
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
 
 
 const Card = (props) => {
@@ -36,17 +34,17 @@ const Card = (props) => {
    }
 
    const buy = async(props)=> { 
-      console.log(props)
       const requestOptions = {
          method: "POST",
          headers: { "Content-Type": "application/json" },
-         body: JSON.stringify(props),
+         body: JSON.stringify(props.item),
        };
        const res = await fetch(
-         `${process.env.REACT_APP_API_URL}/items`,
+         `${process.env.REACT_APP_API_URL}/orders`,
          requestOptions
        );
-       }
+   }
+
    const nextPage=()=>{
       console.log(props.item)
       navigate('/itemPage',  { state: props.item });            
@@ -62,15 +60,15 @@ const Card = (props) => {
               props.role === 'admin' ? <ReusableForm item={props.item} isAdminEdit={true}/> : <CustomForm endpoint="orders" basePrice={props.item.minimumDeliveryPrice} categoryName={props.item.catagoryName} itemDetails={itemDetails} senderDetails={senderDetails} /> 
             }
          </Modal>
-        
-         <div onClick={()=> nextPage(props)} 
-            className='category'id={props.role==='admin'?'adminCardTheme':'userCardTheme'}>
-         {props.role === 'admin' ?  <button onClick={() => setIsModalOpen(true) }>Edit</button>: <button onClick={() => buy(props) }>Buy</button>}
-         {props.role === 'admin' ?  <button onClick={() => triggerDelete()}>Delete</button>: ''}
+        <div>
+         <div onClick={()=> nextPage(props)} className='category'id={props.role==='admin'?'adminCardTheme':'userCardTheme'}>
             <div className='categoryName'> 
             {props.item.catagoryName} <br/>  
             {props.item.minimumDeliveryPrice}
             </div>
+         </div>
+         {props.role === 'admin' ?  <button onClick={() => setIsModalOpen(true) }>Edit</button>: <button onClick={() => buy(props) }>Buy</button>}
+         {props.role === 'admin' ?  <button onClick={() => triggerDelete()}>Delete</button>: ''}
          </div>
       </>
    )

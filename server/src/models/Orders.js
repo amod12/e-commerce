@@ -6,7 +6,13 @@ const ordersSchema = new mongoose.Schema(
     catagoryName: { type: String },
     minimumDeliveryPrice: { type: Number },
     orderStatus: { type: String, default:'Pending' },
-    
+    name:{type: String},
+    phone:{type: Number},
+    quantity: { type: Number },
+    address:{type:String},
+    email: { type: String },
+
+
   },
   { collection: "orders" }
 );

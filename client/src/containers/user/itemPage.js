@@ -13,11 +13,12 @@ function ItemPage() {
     navigate('/login');
   } 
   else {
-    navigate('/buy');  }
+    navigate('/buy',  { state: state });  }
   }
   return (
     <>
-    <div>
+{    console.log(state)
+}    <div>
       {state.catagoryName} <br/>  
       {state.minimumDeliveryPrice}
     </div>

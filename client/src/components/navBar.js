@@ -81,7 +81,7 @@ const NavBar = () => {
           {label: 'Food', key: 'food',}
         ]},
 
-      {label: '   ', style:{marginLeft:500} },
+      {label: '   ', style:{width:'35vw'} },
 
       {label: 'Login', key: 'login', },
       {label: 'Register', key: 'register', },

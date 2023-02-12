@@ -6,6 +6,8 @@ import {
 const initialState = {
   role: "",
   email: "",
+  address: "",
+  number: "",
   name: "",
   token: "",
   _id: ""
@@ -14,13 +16,15 @@ const initialState = {
 const userSlice = (state = initialState, action) => {
   switch (action.type) {
     case ADD_USER_DETAILS:
-      const { name, role, email, _id , token } = action.payload;
+      const { name, role, email, _id , token, address, phone } = action.payload;
       return {
         ...state,
         name,
         role,
         token,
         email,
+        phone,
+        address,
         _id
       };
     case REMOVE_USER_DETAILS_LOGOUT:
@@ -29,6 +33,8 @@ const userSlice = (state = initialState, action) => {
         name: "",
         role: "",
         email: "",
+        email: "",
+        phone: "",
         token:"",
         _id: ""
       };
