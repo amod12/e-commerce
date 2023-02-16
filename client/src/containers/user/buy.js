@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Map from '../../components/map'
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -13,6 +13,11 @@ import { useLocation } from 'react-router-dom'
 
 function Buy() {
   const usersSchema = Yup.object().shape({
+    location: Yup.string()
+      .min(1, "Too Short!")
+      .max(100, "Too Long!")
+      .required("Required"),
+
     name: Yup.string()
       .min(1, "Too Short!")
       .max(100, "Too Long!")
@@ -29,8 +34,11 @@ function Buy() {
 
     quantity: Yup.number().required("Required"),
 
+
     });
   const buyFormFields = [
+    
+    {name: 'location',  placeholder: 'Location'},
     {name: 'name',  placeholder: 'Name'},
     {name: 'address',  placeholder: 'Address'},
     {name: 'phone',  placeholder: 'Phone'},
@@ -43,7 +51,9 @@ function Buy() {
 
   const {state} = useLocation();
   const {address, name, email, phone  }= useSelector(state=>state.user)
-  const {distance} =useSelector(state=>state.location)
+  const {location}= useSelector(state=>state.location)
+  const [loc, setloc] = useState('')
+  // setloc(location)
 
   return (
     <div>
@@ -51,16 +61,18 @@ function Buy() {
       <Map />
       <div >    
             <Formik
+            enableReinitialize
+            // due to this(above) location is being used like useState 
               initialValues={{
                 name: name,
                 address: address,
                 email: email,
                 phone: phone,
+                location: location,
                 quantity: 1,
                 catagoryName:state.catagoryName,
                 minimumDeliveryPrice:state.minimumDeliveryPrice,
-                image: state.image
-
+                image: state.images
               }}
               validationSchema={usersSchema}
               onSubmit={async(values, { resetForm }) => { 
@@ -83,6 +95,8 @@ function Buy() {
             >
            {({  errors, touched }) => (
               <Form>
+                  {console.log(location)}
+
                 {buyFormFields.map(field => (
                   <div key={field.name}>
                     <Field

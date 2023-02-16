@@ -1,16 +1,11 @@
 import {useState, useMemo, useCallback, useRef} from "react";
-import {useMapEvents, MapContainer, TileLayer,Marker, Popup,Polyline} from "react-leaflet"
+import { MapContainer, TileLayer,Marker, Popup,} from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 import {useDispatch, useSelector} from "react-redux"
-import {setSenderLocationLatLng} from "../redux/reducers/locationSlice"
+import {setLocation, setSenderLocationLatLng} from "../redux/reducers/locationSlice"
 import L from 'leaflet';
 import '../App.css'
-
-const iconPerson = new L.Icon({
-    iconUrl: "https://cdn-icons-png.flaticon.com/512/17/17736.png",
-    iconRetinaUrl: "https://cdn-icons-png.flaticon.com/512/17/17736.png",
-    iconSize: [10,20 ],
-})
+import { notification } from 'antd';
 
 const dragSenderMarker = L.icon({
   iconSize: [25, 41],
@@ -22,21 +17,22 @@ const dragSenderMarker = L.icon({
 
 
 const Map = ()=> {
-    const {senderLocationLatLng,receiverLocationLatLng} = useSelector(state=> state.location)
-    const dispatch = useDispatch()
-    const toRadian = angle => (angle * Math.PI) / 180;
-    const lat1 = toRadian(receiverLocationLatLng.lat);
-    const lng1 = toRadian(receiverLocationLatLng.lng);
-    const lat2 = toRadian(senderLocationLatLng.lat);
-    const lng2 = toRadian(senderLocationLatLng.lng);
-
-    
-
+    const {senderLocationLatLng} = useSelector(state=> state.location)
     const {lat, lng} = senderLocationLatLng
+    const dispatch = useDispatch()
 
     const center = {
       lat: 27.68564550564005,
       lng: 85.3445145828365,
+    }
+
+    const geoCodeLatLng = async (lat, lng)=> {    
+      const resp = await fetch  (`https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&apiKey=${process.env.REACT_APP_MAP_API_KEY}`)
+      const data = await resp.json()
+      // console.log(data.features[0].properties.formatted, "abc")
+      dispatch(setLocation(data.features[0].properties.formatted))
+
+
     }
     
   function DraggableMarker() {
@@ -57,6 +53,8 @@ const Map = ()=> {
                lng: marker.getLatLng().lng
               }
             dispatch(setSenderLocationLatLng(latLngObj))
+            geoCodeLatLng(marker.getLatLng().lat, marker.getLatLng().lng)
+
           }
         },
       }),
