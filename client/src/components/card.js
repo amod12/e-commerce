@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../App.css'
 import { Modal } from "antd";
-import ReusableForm from "../components/reuseableForm"
+import ReusableForm from "../containers/admin/adminComponents/reuseableForm"
 import { useNavigate } from "react-router-dom";
 
 
@@ -28,7 +28,7 @@ const Card = (props) => {
          headers: { "Content-Type": "application/json" },
          body: JSON.stringify(props.item),
        };
-       const res = await fetch(
+        await fetch(
          `${process.env.REACT_APP_API_URL}/orders`,
          requestOptions
        );

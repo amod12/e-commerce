@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import '../../App.css'
-import { Button, Popover } from 'antd'
+import React from 'react'
+import '../../../App.css'
+import { Button,  } from 'antd'
 import { AiOutlineSend } from 'react-icons/ai';
-import axios from 'axios'
 import io from 'socket.io-client';
 import { BsCalendar2Date } from 'react-icons/bs'
 import { BiTime, BiMobileAlt } from 'react-icons/bi'
 import { MdOutlineDeliveryDining } from 'react-icons/md'
-import { GiAirplaneArrival } from 'react-icons/gi'
+import { useSelector } from 'react-redux';
 const socket = io(process.env.REACT_APP_API_URL);
 
 
+
 const OrdersCard = (props) => {
+   const {role }= useSelector(state=>state.user)
 
    const selectDynamicColor = () => {
 
@@ -40,35 +41,36 @@ const OrdersCard = (props) => {
       <>
 
          <div className='order-box'>
-            <div className='order-head' >
-               <h4 >order id # {props.item._id}</h4>
-               <span style={{ backgroundColor: selectDynamicColor() }}>{props.item.orderStatus}</span>
-            </div>
-            <div className="order-body">
-               <div className='order-letter'>
-                  <h1 >p</h1>
+         <div className="order-footer">
+               <div className='flex '>
+                  <BsCalendar2Date /><h4>{props.item.pickupDate}</h4>
+                  <BiTime /><h4>{props.item.pickupTime}</h4>
+                  <BiMobileAlt /><h4> {props.item.phone}</h4>
+                  <h4 >order id # {props.item._id}</h4>
+
                </div>
+            </div>
+           
+            <div className="order-body">
+               <img src={props.item.image} alt="Logo" width={100} />
                <div className='order-tilte-box'>
-                  <h2>{props.item.productName ? props.item.productName : "product name"} </h2>
+                  <h2>{props.item.catagoryName ? props.item.catagoryName : "product name"} </h2>
                   <div className='flex ' style={{ marginTop: '1rem' }} >
-                     <MdOutlineDeliveryDining size={25} className="order-icon" /><h4>{props.item.senderName}Sender Name</h4>
-                     <GiAirplaneArrival size={25} className="order-icon" /> <h4>{props.item.receiverName}</h4>
+                     <MdOutlineDeliveryDining size={25} className="order-icon" /><h4>Receiver {props.item.name} </h4>
                   </div>
                </div >
                <div>
                   <div className='flex order-subtitle-box'>
-                     <p> Unit:   {props.item.unitItems}</p>
-                     <p> Weight:   {props.item.weight}</p>
+                     <p> Quantity:   {props.item.quantity}</p>
                   </div>
                   <div class="flex order-subtitle-box ">
-                     <p> Distance:   {props.item.unitItems}</p>
-                     <p> Total Price:   {props.item.weight}</p>
+                     <p> Total Price:   {props.item.minimumDeliveryPrice}</p>
 
                   </div>
                </div>
                <div style={{ marginBottom: '20px', marginRight: '20px' }}>
                   <div style={{ margin: '20px 0' }}>
-                     {props.isRider ? (
+                     {role ===  'admin'? (
                         <>
                           <Button onClick={() => changeStatus('Rider Accepted')}>Accept</Button>
                           <Button onClick={() => changeStatus('Picked Up')}>Picked Up</Button>
@@ -84,12 +86,8 @@ const OrdersCard = (props) => {
                  
                </div>
             </div>
-            <div className="order-footer">
-               <div className='flex '>
-                  <BsCalendar2Date /><h4>{props.item.pickupDate}</h4>
-                  <BiTime /><h4>{props.item.pickupTime}</h4>
-                  <BiMobileAlt /><h4>+977 - {props.item.receiverPhoneNo}</h4>
-               </div>
+            <div className='order-head' >
+               <span style={{ backgroundColor: selectDynamicColor() }}>{props.item.orderStatus}</span>
             </div>
          </div>
       </>

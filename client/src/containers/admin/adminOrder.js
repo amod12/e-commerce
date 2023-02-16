@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import axios from "axios";
-import OrdersCard from "./ordercard";
+import OrdersCard from "./adminComponents/orderCard";
 import { Pagination } from 'antd';
 // import Loading from "./loading";
 import io from 'socket.io-client';

@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Register from "./containers/auth/register";
 import Login from "./containers/auth/login";
 import { useSelector } from "react-redux";
-import PageNotFound from "./components/pageNotFound";
+import PageNotFound from "./containers/sharedScreen/pageNotFound";
 import NavBar from "./components/navBar";
 import AdminDashboard from "./containers/admin/adminDashboard";
 import UserDashboard from "./containers/user/userDashboard";
@@ -13,6 +13,7 @@ import ItemPage from "./containers/user/itemPage";
 import Buy from "./containers/user/buy";
 import Items from "./containers/sharedScreen/items";
 import AdminOrder from "./containers/admin/adminOrder";
+import UserOrder from "./containers/user/userOrder";
 
 const AllRoute=()=> {
   const {role, token }= useSelector(state=>state.user)
@@ -63,6 +64,7 @@ const UserScreen=()=>{
     <Route path="/profile" element={<Profile />} />
     <Route path="/itemPage" element={<ItemPage />} />
     <Route path="/buy" element={<Buy />} />
+    <Route path="/orders" element={<UserOrder />} />
     <Route path="/eg" element={<MainComponent />} />
   </Routes>
   )
