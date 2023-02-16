@@ -3,7 +3,7 @@ import axios from "axios";
 import {  Modal, Button } from "antd";
 import {useSelector} from 'react-redux';
 import Card from '../../components/card';
-import ReusableForm from '../../components/reuseableForm';
+import ReusableForm from '../../containers/admin/adminComponents/reuseableForm';
 
 function Items() {
   const {role} = useSelector(state=> state.user)

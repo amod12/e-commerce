@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import Map from '../../components/map'
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
@@ -52,12 +51,11 @@ function Buy() {
   const {state} = useLocation();
   const {address, name, email, phone  }= useSelector(state=>state.user)
   const {location}= useSelector(state=>state.location)
-  const [loc, setloc] = useState('')
-  // setloc(location)
+  
 
   return (
     <div>
-      {console.log(state)}
+      {console.log(state, '@@')}
       <Map />
       <div >    
             <Formik
@@ -70,9 +68,9 @@ function Buy() {
                 phone: phone,
                 location: location,
                 quantity: 1,
-                catagoryName:state.catagoryName,
-                minimumDeliveryPrice:state.minimumDeliveryPrice,
-                image: state.images
+                catagoryName: state.catagoryName,
+                minimumDeliveryPrice: state.minimumDeliveryPrice,
+                image: state.image
               }}
               validationSchema={usersSchema}
               onSubmit={async(values, { resetForm }) => { 
@@ -95,7 +93,6 @@ function Buy() {
             >
            {({  errors, touched }) => (
               <Form>
-                  {console.log(location)}
 
                 {buyFormFields.map(field => (
                   <div key={field.name}>
