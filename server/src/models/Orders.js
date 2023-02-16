@@ -11,8 +11,8 @@ const ordersSchema = new mongoose.Schema(
     quantity: { type: Number },
     address:{type:String},
     email: { type: String },
-
-
+    pickupDate:{type:String},
+    pickupTime:{type:String},
   },
   { collection: "orders" }
 );

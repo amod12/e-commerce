@@ -1,21 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Items = require("../models/Items");
-const multer  = require('multer')
-
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, '../client/src/uploads')
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname)
-  }
-})
-
-const upload = multer({ storage: storage }).single('avatar')
   
-router.post("/items", upload,  async (req, res) => {
+router.post("/items", async (req, res) => {
     try {
       Items.findOne({ catagoryName: req.body.catagoryName }).then((item) => {
         if(!item){
@@ -36,16 +23,6 @@ router.post("/items", upload,  async (req, res) => {
       console.log(err);
     }
   });
-
-  router.post('/profile', upload, async (req, res) =>{
-    console.log(req.file)
-    const data = await Users.findByIdAndUpdate(req.body._id, {avatarPic: req.file.filename}).lean()
-    if(data){
-      res.status(200).json({
-        msg:"imageUploaded Successfully",
-      })
-    }
-  })
 
 router.put("/items", async (req, res) => {
   try {

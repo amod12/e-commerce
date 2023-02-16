@@ -19,6 +19,7 @@ function ItemPage() {
     <>
 {    console.log(state)
 }    <div>
+      <img src={state.image} alt="Logo" width={400} /> <br/>  
       {state.catagoryName} <br/>  
       {state.minimumDeliveryPrice}
     </div>

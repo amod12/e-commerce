@@ -36,6 +36,9 @@ function Buy() {
     {name: 'phone',  placeholder: 'Phone'},
     {name: 'email',  placeholder: 'Email'},
     {name: 'quantity', placeholder: 'Quantity'},
+    {name: 'pickupDate', placeholder: 'PickupDate'},
+    {name: 'pickupTime', placeholder: 'PickupTime'},
+
   ];
 
   const {state} = useLocation();
@@ -56,6 +59,7 @@ function Buy() {
                 quantity: 1,
                 catagoryName:state.catagoryName,
                 minimumDeliveryPrice:state.minimumDeliveryPrice,
+                image: state.image
 
               }}
               validationSchema={usersSchema}
@@ -82,7 +86,7 @@ function Buy() {
                 {buyFormFields.map(field => (
                   <div key={field.name}>
                     <Field
-                      type={'text' }
+                      type={field.name==="pickupDate"?'date':field.name==="pickupTime"?'time' :"text" }
                       name={field.name}
                       placeholder={field.placeholder}
                     />

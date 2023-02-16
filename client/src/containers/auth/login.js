@@ -42,6 +42,7 @@ const Login = () => {
                                     headers: { "Content-Type": "application/json" },
                                     body: JSON.stringify(values),
                                 };
+                                
                                 const res = await fetch(`${process.env.REACT_APP_API_URL}/login`, requestOptions);
                                 const data = await res.json()
                                 if (data.isLogedin) {

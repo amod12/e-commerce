@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import '../App.css'
 import { Modal } from "antd";
-import CustomForm from "../components/customForm"
 import ReusableForm from "../components/reuseableForm"
 import { useNavigate } from "react-router-dom";
 
@@ -9,17 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Card = (props) => {
    const navigate = useNavigate()
    const [isModalOpen, setIsModalOpen] = useState(false)
-   const itemDetails = [
-      'pickupDate',
-      'pickupTime',
-      'weight',
-      'unitItems',
-      'maxLength'
-   ]
-   const senderDetails = [
-      'receiverName',
-      'receiverPhoneNo'
-   ]
+   
    const triggerDelete = async()=>{
       const requestOptions = {
          method:"DELETE",
@@ -56,15 +45,14 @@ const Card = (props) => {
             onCancel={() => setIsModalOpen(false)}
             open={isModalOpen}>
             {props.item.catagoryName}
-            {
-              props.role === 'admin' ? <ReusableForm item={props.item} isAdminEdit={true}/> : <CustomForm endpoint="orders" basePrice={props.item.minimumDeliveryPrice} categoryName={props.item.catagoryName} itemDetails={itemDetails} senderDetails={senderDetails} /> 
-            }
+            {props.role === 'admin' ? <ReusableForm item={props.item} isAdminEdit={true}/> : ""}
          </Modal>
         <div>
-         <div onClick={()=> nextPage(props)} className='category'id={props.role==='admin'?'adminCardTheme':'userCardTheme'}>
+         <div onClick={()=> nextPage()} className='category'id={props.role==='admin'?'adminCardTheme':'userCardTheme'}>
             <div className='categoryName'> 
             {props.item.catagoryName} <br/>  
             {props.item.minimumDeliveryPrice}
+            <img src={props.item.image} alt="Logo" width={100} />
             </div>
          </div>
          {props.role === 'admin' ?  <button onClick={() => setIsModalOpen(true) }>Edit</button>: <button onClick={() => buy(props) }>Buy</button>}
