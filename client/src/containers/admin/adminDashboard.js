@@ -1,11 +1,10 @@
 import React from 'react'
-import Items from '../sharedScreen/items'
-import DeliveryOrders from './deliveryOrders'
+import AdminOrder from './adminOrder'
 
 function AdminDashboard() {
   return (
     <div>
-      <DeliveryOrders/>
+      <AdminOrder/>
     </div>
   )
 }

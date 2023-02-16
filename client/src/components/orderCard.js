@@ -12,7 +12,7 @@ const OrdersCard = (props) => {
 
       if (props.item.orderStatus === "Pending") {
          return '#d3c86b'
-      } else if (props.item.orderStatus === "Accepted") {
+      } else if (props.item.orderStatus === "Accept") {
          return '#4BB543'
       } else {
          return 'red'
@@ -48,9 +48,9 @@ const OrdersCard = (props) => {
             <div className='categoryName'>
 
                <div >Status:  <span className='orderStatus'>{props.item.orderStatus}</span></div>
-               <Button onClick={() => changeStatus('accept')}>Accept</Button>
+               <Button onClick={() => changeStatus('Accept')}>Accept</Button>
                <Popover content={content} >
-                  <Button onClick={() => changeStatus('reject')} type="primary">Reject</Button>
+                  <Button onClick={() => changeStatus('Reject')} type="primary">Reject</Button>
                </Popover>
             </div>
 

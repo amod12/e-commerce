@@ -2,6 +2,10 @@ const express = require("express");
 const router = express.Router();
 const Orders = require("../models/Orders");
 const jwt = require('jsonwebtoken');
+const cloudinary = require('cloudinary').v2;
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
+
 router.post("/orders",  async (req, res) => {
     try {
         const dbResponse = await Orders.create(req.body)
