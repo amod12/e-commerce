@@ -7,6 +7,7 @@ const ordersSchema = new mongoose.Schema(
     minimumDeliveryPrice: { type: Number },
     orderStatus: { type: String, default:'Pending' },
     name:{type: String},
+    userId:{type: String},
     phone:{type: Number},
     quantity: { type: Number },
     address:{type:String},

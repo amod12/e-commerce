@@ -41,8 +41,8 @@ router.post("/orders",  async (req, res) => {
   router.get("/orders", async (req, res) => {
     try {
         const totalOrdersLength = await Orders.find()
-        if(req.query.senderId){
-          const data = await Orders.find({"senderId":req.query.senderId})
+        if(req.query.userId){
+          const data = await Orders.find({"userId":req.query.userId})
           res.status(200).json({
             orders: data
         })
@@ -63,14 +63,24 @@ router.post("/orders",  async (req, res) => {
 
   router.delete("/orders", async (req, res) => {
     try {
-      const data = await Orders.findByIdAndDelete(req.body._id)
-      if(data){
-        res.status(200).json({msg: 'deleted successfully'})
+      const totalOrdersLength = await Orders.find()
+      if(req.query.userId){
+        const data = await Orders.find({"userId":req.query.userId})
+        res.status(200).json({
+          orders: data
+      })
+      }else{
+       const docsFilteredByStatus =  req.query.role == 'admin' ? {orderStatus:req.query.orderStatus} : { orderStatus: { $nin:[ 'Pending']} }
+       const data = await Orders.find(docsFilteredByStatus).limit(req.query.size).skip(req.query.size* req.query.page - req.query.size)
+        if(data){
+            res.status(200).json({
+                orders:data,
+                totalOrdersCount: totalOrdersLength.length
+            })
+        }
       }
-      else{
-        res.status(500).json({msg:"something went wrong"})
-      }
-    } catch (err) {
+     
+  }  catch (err) {
         console.log(err);
     }
     });

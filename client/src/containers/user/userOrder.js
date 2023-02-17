@@ -67,6 +67,10 @@ const columns = [
     dataIndex: "phone",
   },
   {
+    title: 'Item Name',
+    dataIndex: "catagoryName",
+  },
+  {
     title: 'Quantity',
     dataIndex: 'quantity',
   },
@@ -108,7 +112,7 @@ const columns = [
         'authorization': `Bearer ${token}`
       }
     }
-    axios.get(`${process.env.REACT_APP_API_URL}/orders?senderId=${_id}`, requestOptions).then((response) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/orders?userId=${_id}`, requestOptions).then((response) => {
         setOrders(response.data.orders)
       });
 }

@@ -9,8 +9,6 @@ import { MdOutlineDeliveryDining } from 'react-icons/md'
 import { useSelector } from 'react-redux';
 const socket = io(process.env.REACT_APP_API_URL);
 
-
-
 const OrdersCard = (props) => {
    const {role }= useSelector(state=>state.user)
 
