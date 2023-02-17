@@ -49,7 +49,7 @@ function Buy() {
   ];
 
   const {state} = useLocation();
-  const {address, name, email, phone  }= useSelector(state=>state.user)
+  const {address, name, email, phone, _id  }= useSelector(state=>state.user)
   const {location}= useSelector(state=>state.location)
   
 
@@ -67,6 +67,7 @@ function Buy() {
                 email: email,
                 phone: phone,
                 location: location,
+                userId: _id,
                 quantity: 1,
                 catagoryName: state.catagoryName,
                 minimumDeliveryPrice: state.minimumDeliveryPrice,
