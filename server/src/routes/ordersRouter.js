@@ -2,8 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Orders = require("../models/Orders");
 const jwt = require('jsonwebtoken');
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
 
 router.post("/orders",  async (req, res) => {
     try {

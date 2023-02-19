@@ -4,7 +4,7 @@ import { Button,  } from 'antd'
 import { AiOutlineSend } from 'react-icons/ai';
 import io from 'socket.io-client';
 import { BsCalendar2Date } from 'react-icons/bs'
-import { BiTime, BiMobileAlt } from 'react-icons/bi'
+import { BiTime, BiMobileAlt, BiCheck } from 'react-icons/bi'
 import { MdOutlineDeliveryDining } from 'react-icons/md'
 import { useSelector } from 'react-redux';
 const socket = io(process.env.REACT_APP_API_URL);
@@ -16,8 +16,10 @@ const OrdersCard = (props) => {
 
       if (props.item.orderStatus === "Pending") {
          return '#F29339'
-      } else if (props.item.orderStatus === "Accepted") {
+      } else if (props.item.orderStatus === "Accept") {
          return '#077E8C'
+      } else if (props.item.orderStatus === "Complete") {
+         return 'green'
       } else {
          return 'red'
       }
@@ -26,9 +28,22 @@ const OrdersCard = (props) => {
    const changeStatus = (status) => {
       const orderDetails = {
          status: status,
+         id: props.item._id
       }
       socket.emit('orderRequest', orderDetails)
    }
+   const changeName=(name)=>{
+      if(name === 'Pending'){
+         return 'Accept'
+      }
+      else if(name === 'Accept'){
+         return 'Sent'
+      }else if(name === 'Sent'){
+         return 'Complete'
+      }
+      else return <BiCheck/>
+   }
+   
    const content = (
       <div style={{ display: 'flex', alignItems: 'center' }}>
          <input placeholder="reasons for rejection" />{<AiOutlineSend size={30} marginLeft={8} />}
@@ -67,17 +82,13 @@ const OrdersCard = (props) => {
                </div>
                <div style={{ marginBottom: '20px', marginRight: '20px' }}>
                   <div style={{ margin: '20px 0' }}>
-                     {role ===  'admin'? (
-                        <>
-                          <Button onClick={() => changeStatus('Accepted')}>Accept</Button>
-                          </>
-                     ) :null } 
+                     <Button onClick={() => changeStatus(changeName(props.item.orderStatus))}>{changeName(props.item.orderStatus)}</Button>
                   </div>
                  
                </div>
             </div>
             <div className='order-head' >
-               <span style={{ backgroundColor: selectDynamicColor() }}>{props.item.orderStatus}</span>
+               <span style={{ backgroundColor: selectDynamicColor(), marginLeft:610}}>{props.item.orderStatus}</span>
             </div>
          </div>
       </>
