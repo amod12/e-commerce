@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { message } from 'antd';
 
 
-const ReusableForm =({isAdminEdit, item, handleCancel})=>{
+const AddItems =({isAdminEdit, item, handleCancel})=>{
   const [image, setImage]=useState('')
 
   const itemSchema = Yup.object().shape({
@@ -108,4 +108,4 @@ const ReusableForm =({isAdminEdit, item, handleCancel})=>{
     )
 } 
 
-export default ReusableForm
+export default AddItems

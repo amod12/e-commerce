@@ -48,7 +48,7 @@ const AdminScreen=()=>{
     <Route path="/profile" element={<Profile />} />
     <Route path="/login" element={<Login />} />
     <Route path="/itemPage" element={<ItemPage />} />
-    <Route path="/" element={<AdminOrder />} />
+    <Route path="/" element={<AdminDashboard />} />
     <Route path="/buy" element={<Buy />} />
   </Routes>
   )

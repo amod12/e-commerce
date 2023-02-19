@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../App.css'
 import { Modal } from "antd";
-import ReusableForm from "../containers/admin/adminComponents/reuseableForm"
+import AddItems from "../containers/admin/adminComponents/addItems"
 import { useNavigate } from "react-router-dom";
 
 
@@ -45,7 +45,7 @@ const Card = (props) => {
             onCancel={() => setIsModalOpen(false)}
             open={isModalOpen}>
             {props.item.catagoryName}
-            {props.role === 'admin' ? <ReusableForm item={props.item} isAdminEdit={true}/> : ""}
+            {props.role === 'admin' ? <AddItems item={props.item} isAdminEdit={true}/> : ""}
          </Modal>
         <div>
          <div onClick={()=> nextPage()} className='category'id={props.role==='admin'?'adminCardTheme':'userCardTheme'}>
