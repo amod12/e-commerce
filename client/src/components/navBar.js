@@ -10,7 +10,6 @@ import { useDispatch } from 'react-redux'
 import navItems from '../json/navItems.json'
 import { Menu,  } from 'antd';
 import image from "../images/sam2.png";
-import NavBa from "../eg";
 
 // problems in navbar hen putting it when thers isnt aperson logged in
 
@@ -98,8 +97,8 @@ const NavBar = () => {
     </Menu>
     <Drawer
       title= 'Panel'
-      style={{width:200}}
       placement="left"
+      width={200}
       onClose={onClose}
       open={open}
       >
