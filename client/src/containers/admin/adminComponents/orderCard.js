@@ -26,7 +26,6 @@ const OrdersCard = (props) => {
    const changeStatus = (status) => {
       const orderDetails = {
          status: status,
-         id: props.item._id
       }
       socket.emit('orderRequest', orderDetails)
    }
@@ -70,16 +69,9 @@ const OrdersCard = (props) => {
                   <div style={{ margin: '20px 0' }}>
                      {role ===  'admin'? (
                         <>
-                          <Button onClick={() => changeStatus('Rider Accepted')}>Accept</Button>
-                          <Button onClick={() => changeStatus('Picked Up')}>Picked Up</Button>
-                          <Button onClick={() => changeStatus('Takeaway Success')}>Takeaway Success</Button>
+                          <Button onClick={() => changeStatus('Accepted')}>Accept</Button>
                           </>
-                     ) : (
-                        <>  
-                        <Button onClick={() => changeStatus('accept')}>Accept</Button>
-                        <div><Button onClick={() => changeStatus('reject')} type="primary">Reject</Button></div>
-                        </>
-                     )} 
+                     ) :null } 
                   </div>
                  
                </div>

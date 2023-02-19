@@ -3,7 +3,7 @@ import axios from "axios";
 import {  Modal, Button } from "antd";
 import {useSelector} from 'react-redux';
 import Card from '../../components/card';
-import ReusableForm from '../../containers/admin/adminComponents/reuseableForm';
+import AddItems from '../../containers/admin/adminComponents/addItems';
 
 function Items() {
   const {role} = useSelector(state=> state.user)
@@ -37,7 +37,7 @@ function Items() {
         open={isModalOpen}
         onCancel={handleCancel}
       >
-        <ReusableForm handleCancel={handleCancel}/>
+        <AddItems handleCancel={handleCancel}/>
       </Modal>
 
       <div class="flex-container">

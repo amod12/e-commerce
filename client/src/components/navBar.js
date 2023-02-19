@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Drawer} from "antd";
+import { Drawer, Button} from "antd";
 import { Link, } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser,faBars,  } from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux'
 import navItems from '../json/navItems.json'
 import { Menu,  } from 'antd';
 import image from "../images/sam2.png";
+import NavBa from "../eg";
 
 // problems in navbar hen putting it when thers isnt aperson logged in
 
@@ -97,11 +98,16 @@ const NavBar = () => {
     </Menu>
     <Drawer
       title= 'Panel'
+      style={{width:200}}
       placement="left"
       onClose={onClose}
       open={open}
       >
-      {navItems[role].map(item=>  <Link to={item.link}><li onClick={()=>setOpen(false)}>{item.label}</li></Link> )}
+      {navItems[role].map(item=> 
+      <div>
+      <Link to={item.link}><Button onClick={()=>setOpen(false)}>{item.label}</Button></Link> <br/>
+      </div>)}
+
     </Drawer>
     </div>
   );
