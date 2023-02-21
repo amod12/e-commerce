@@ -16,7 +16,7 @@ const AddItems =({isAdminEdit, item, handleCancel})=>{
       .max(100, "Too Long!")
       .required("Required"),
 
-    minimumDeliveryPrice: Yup.string()
+    price: Yup.string()
       .required("Required"),
 
       file:Yup.mixed().test('hasFile','image is required',()=>{
@@ -25,6 +25,13 @@ const AddItems =({isAdminEdit, item, handleCancel})=>{
         }
         return false
       }),
+
+      catagoryRole: Yup.string().required("Required"),
+
+      catagoryDescription: Yup.string()
+      .min(2, "Too Short!")
+      .max(100, "Too Long!")
+      .required("Required"),
   });
   
   const submitImage = async ()=>{
@@ -46,8 +53,10 @@ const AddItems =({isAdminEdit, item, handleCancel})=>{
            initialValues={item ||
         {
           catagoryName: "",
-          minimumDeliveryPrice: "",
-          photo: ""
+          price: "",
+          photo: "",
+          catagoryDescription:"",
+          catagoryRole: "",
         }
         // writing photo:' ' to show errors in form
         }
@@ -65,7 +74,6 @@ const AddItems =({isAdminEdit, item, handleCancel})=>{
               requestOptions
             );
             
-
             const data = await res.json();
             if (res.status === 200) {
               toast.success(data.msg)
@@ -87,16 +95,35 @@ const AddItems =({isAdminEdit, item, handleCancel})=>{
               </div>
               <div>
                 <Field
-                  name="minimumDeliveryPrice"
-                  placeholder="minimum delivery price"
+                  name="price"
+                  placeholder="price"
                   type="number"
                 />
-                {errors.minimumDeliveryPrice && touched.minimumDeliveryPrice ? (
-                  <div className="validaton-message">{errors.minimumDeliveryPrice}</div>
+                {errors.price && touched.price ? (
+                  <div className="validaton-message">{errors.price}</div>
                 ) : null}
               </div>
               <div>
+                <Field name="catagoryDescription" placeholder="Catagory Description" />
+                {errors.catagoryDescription && touched.catagoryDescription ? (
+                  <div className="validaton-message">{errors.catagoryDescription}</div>
+                ) : null}
+              </div>
+              <div>
+                    <Field as="select" name="catagoryRole" placeholder="Catagory Type">
+                      <option value=""> Type</option>
+                      <option value="laptop">Laptop</option>
+                      <option value="food">Food</option>
+                    </Field>
+                    {errors.role && touched.role ? (
+                      <div className="validaton-message">{errors.role}</div>
+                    ) : null}
+                  </div>
+              <div>
                 <input type='file' onChange={(e) => setImage(e.target.files[0])} className=''></input>
+                {image && <img src={URL.createObjectURL(image) } width={300} />}
+
+
               </div>
               <button className="button" onClick={() => image ? '' : message.error("Please Fill the form completely", [2])}>{isAdminEdit ? 'Save Item' : 'Add Item'}</button>
             </Form>

@@ -70,7 +70,7 @@ function Buy() {
                 userId: _id,
                 quantity: 1,
                 catagoryName: state.catagoryName,
-                minimumDeliveryPrice: state.minimumDeliveryPrice,
+                price: state.price,
                 image: state.image
               }}
               validationSchema={usersSchema}

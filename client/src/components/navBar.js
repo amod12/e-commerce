@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Drawer, Button} from "antd";
-import { Link, } from 'react-router-dom';
+import React, { useState } from "react";
+import { Drawer, Button, Menu} from "antd";
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser,faBars,  } from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { logoutResetDetails } from "../redux/actions/userAction"
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux'
 import navItems from '../json/navItems.json'
-import { Menu,  } from 'antd';
 import image from "../images/sam2.png";
 
 // problems in navbar hen putting it when thers isnt aperson logged in
@@ -96,15 +93,16 @@ const NavBar = () => {
     
     </Menu>
     <Drawer
-      title= 'Panel'
+      title= 'E-commerce'
       placement="left"
       width={200}
+      closable={false} 
       onClose={onClose}
       open={open}
       >
       {navItems[role].map(item=> 
       <div>
-      <Link to={item.link}><Button onClick={()=>setOpen(false)}>{item.label}</Button></Link> <br/>
+      <Link to={item.link}><Button style={{ border: "none" }} onClick={()=>setOpen(false)}>{item.label}</Button></Link> <br/>
       </div>)}
 
     </Drawer>

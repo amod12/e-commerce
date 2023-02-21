@@ -4,7 +4,9 @@ const itemSchema = new mongoose.Schema(
   {
     image:{type:String},
     catagoryName: { type: String },
-    minimumDeliveryPrice: { type: Number },
+    price: { type: Number },
+    catagoryDescription:{type: String},
+    catagoryRole:{type: String},
   },
   { collection: "items" }
 );

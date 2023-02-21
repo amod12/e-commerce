@@ -4,7 +4,7 @@ const ordersSchema = new mongoose.Schema(
   {
     image:{type:String},
     catagoryName: { type: String },
-    minimumDeliveryPrice: { type: Number },
+    price: { type: Number },
     orderStatus: { type: String, default:'Pending' },
     name:{type: String},
     userId:{type: String},

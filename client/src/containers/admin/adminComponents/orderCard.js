@@ -84,7 +84,7 @@ const OrdersCard = (props) => {
                      <p> Quantity:   {props.item.quantity}</p>
                   </div>
                   <div class="flex order-subtitle-box ">
-                     <p> Total Price:   {props.item.minimumDeliveryPrice}</p>
+                     <p> Total Price:   {props.item.price}</p>
 
                   </div>
                </div>
@@ -92,7 +92,7 @@ const OrdersCard = (props) => {
                   <div style={{ margin: '20px 0' }}>
                      {nam !== 'Complete'? 
                     ( <Button onClick={() => changeStatus(changeName())}> {nam}</Button>):
-                     (<BiCheck/>)}
+                     (<BiCheck size={30} />)}
                   </div>
                  
                </div>
