@@ -10,7 +10,7 @@ function ItemPage() {
    const navigate = useNavigate()
   const checkIfLogedIn=()=>{
   if (email === '') {
-    navigate('/login');
+    navigate('/login'); 
   } 
   else {
     navigate('/buy',  { state: state });  }
@@ -21,7 +21,8 @@ function ItemPage() {
 }    <div>
       <img src={state.image} alt="Logo" width={400} /> <br/>  
       {state.catagoryName} <br/>  
-      {state.minimumDeliveryPrice}
+      {state.price}<br/>
+      {state.catagoryDescription}
     </div>
      
     <CustomButton

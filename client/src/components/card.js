@@ -35,7 +35,6 @@ const Card = (props) => {
    }
 
    const nextPage=()=>{
-      console.log(props.item)
       navigate('/itemPage',  { state: props.item });            
    }
    return (
@@ -51,7 +50,7 @@ const Card = (props) => {
          <div onClick={()=> nextPage()} className='category'id={props.role==='admin'?'adminCardTheme':'userCardTheme'}>
             <div className='categoryName'> 
             {props.item.catagoryName} <br/>  
-            {props.item.minimumDeliveryPrice}
+            {props.item.price}<br/> 
             <img src={props.item.image} alt="Logo" width={100} />
             </div>
          </div>
