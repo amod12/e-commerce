@@ -43,7 +43,7 @@ const AdminOrder = (props) => {
             <h3 >Order List</h3>
             {orders.map((item, id) => {
               console.log(item)
-              return <OrdersCard item={item} key={id} />
+              return <OrdersCard item={item} key={id}  />
             })}
             <Pagination className="pagination" total={ordersCount} onChange={(page, size) => fetchAvailableItems(page, size)} />
           </div>

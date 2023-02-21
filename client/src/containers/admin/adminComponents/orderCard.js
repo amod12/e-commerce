@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../../../App.css'
 import { Button,  } from 'antd'
 import { AiOutlineSend } from 'react-icons/ai';
@@ -10,15 +10,14 @@ import { useSelector } from 'react-redux';
 const socket = io(process.env.REACT_APP_API_URL);
 
 const OrdersCard = (props) => {
-   const {role }= useSelector(state=>state.user)
 
    const selectDynamicColor = () => {
 
-      if (props.item.orderStatus === "Pending") {
+      if (nam === "Pending") {
          return '#F29339'
-      } else if (props.item.orderStatus === "Accept") {
+      } else if (nam === "Accept") {
          return '#077E8C'
-      } else if (props.item.orderStatus === "Complete") {
+      } else if (nam === "Complete") {
          return 'green'
       } else {
          return 'red'
@@ -32,23 +31,32 @@ const OrdersCard = (props) => {
       }
       socket.emit('orderRequest', orderDetails)
    }
-   const changeName=(name)=>{
-      if(name === 'Pending'){
+
+   const changeName=()=>{
+      if(nam === 'Pending'){
+         setNam('Accept')
          return 'Accept'
       }
-      else if(name === 'Accept'){
+      else if(nam === 'Accept'){
+           setNam('Sent')
          return 'Sent'
-      }else if(name === 'Sent'){
-         return 'Complete'
+                
       }
-      else return <BiCheck/>
+      else {
+         setNam('Complete')
+         return 'Complete'
    }
-   
+         
+   }
+   const [nam, setNam] =useState(props.item.orderStatus)
+
    const content = (
       <div style={{ display: 'flex', alignItems: 'center' }}>
          <input placeholder="reasons for rejection" />{<AiOutlineSend size={30} marginLeft={8} />}
       </div>
    );
+
+
    return (
       <>
 
@@ -82,13 +90,15 @@ const OrdersCard = (props) => {
                </div>
                <div style={{ marginBottom: '20px', marginRight: '20px' }}>
                   <div style={{ margin: '20px 0' }}>
-                     <Button onClick={() => changeStatus(changeName(props.item.orderStatus))}>{changeName(props.item.orderStatus)}</Button>
+                     {nam !== 'Complete'? 
+                    ( <Button onClick={() => changeStatus(changeName())}> {nam}</Button>):
+                     (<BiCheck/>)}
                   </div>
                  
                </div>
             </div>
             <div className='order-head' >
-               <span style={{ backgroundColor: selectDynamicColor(), marginLeft:610}}>{props.item.orderStatus}</span>
+               <span style={{ backgroundColor: selectDynamicColor(), marginLeft:610}}>{nam}</span>
             </div>
          </div>
       </>
