@@ -1,8 +1,7 @@
 import React from 'react'
 import { CustomButton } from '../../components/customButton'
 import { useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate,useLocation } from 'react-router-dom' 
 
 function ItemPage() {
   const {state} = useLocation();

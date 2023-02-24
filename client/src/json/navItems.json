@@ -1,6 +1,6 @@
 {
     "admin": [
-        {"label": "Delivery Items", "link": "/items"}, 
+        {"label": " Items", "link": "/items"}, 
         {"label":"Update Credentials", "link": "/update-details"}, 
         {"label":"Analytics", "link":"/analytics"}
     ],

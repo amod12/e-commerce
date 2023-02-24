@@ -4,8 +4,21 @@ import {  Modal, Button } from "antd";
 import {useSelector} from 'react-redux';
 import Card from '../../components/card';
 import AddItems from '../../containers/admin/adminComponents/addItems';
+import { useLocation } from 'react-router-dom' 
+import Search from '../../components/searchBar';
+
 
 function Items() {
+  const location = useLocation();
+  let items;
+  let category;
+  if (location.state && location.state.key === 'validItems') {
+    items = location.state.data;
+  }
+  if (location.state && location.state.key === 'category') {
+    category = location.state.data;
+  }
+
   const {role} = useSelector(state=> state.user)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
@@ -14,20 +27,25 @@ function Items() {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-
-  const [validItems, setValidItems] = useState([])
+ 
+  const [validItems, setvalidItems] = useState([])
     const fetchAvailableItems= ()=>{
-        axios.get(`${process.env.REACT_APP_API_URL}/items`).then((response) => {
-            setValidItems(response.data.validItemOptions)
+      
+        axios.get(`${process.env.REACT_APP_API_URL}/items/${category || ""}`).then((response) => {
+            setvalidItems(response.data.validItemOptions)
+           
           });      
     }
-    
+    console.log(items)
+    console.log(category)
     useEffect(()=>{
-        fetchAvailableItems()
-    }, [])
+      {items === undefined? 
+        fetchAvailableItems(): setvalidItems(items)}
+    }, [items, category])
   return (
     <>
-    <div>
+    <Search/>
+      <div>
          {role==="admin" ? <Button onClick={()=>showModal()} >Add Items</Button>:""}
       </div>
 

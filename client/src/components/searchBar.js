@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import "./components/styles.css";
+import "./styles.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./App.css"
-import { faSearch,  } from '@fortawesome/free-solid-svg-icons';
+import "../App.css"
+import { faSearch,} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 
 
 export default function Search() {
@@ -39,9 +38,9 @@ export default function Search() {
       <input type="search" className='search_box' placeholder='Search' style={{marginTop: -1}}
        onChange={onChange}
       />
-        <FontAwesomeIcon icon={faSearch} className='search_icon' />
+      <FontAwesomeIcon icon={faSearch} className='search_icon' onClick={()=>navigate('/',{ state: { key: 'validItems', data: validItems }}) } />
+
     </div>
-        
         { validItems.length !== 0 && value !== ''?
         <div className="dropdown" >
           {validItems        
