@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import { CustomButton } from "../../components/customButton";
 import { Formik, Form, Field } from "formik";
 import img from "../../images/img.jpg";
-import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { addUserDetails } from "../../redux/actions/userAction"
 import { useDispatch } from "react-redux";
 import { message } from 'antd'; 
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
      const dispatch = useDispatch()
+     const navigate = useNavigate()
+
     const [showPassword, setShowPassword] = useState(true)
     const usersSchema = Yup.object().shape({
         email: Yup.string() 
@@ -47,6 +50,7 @@ const Login = () => {
                                 const data = await res.json()
                                 if (data.isLogedin) {
                                     dispatch(addUserDetails(data.userData))
+                                    navigate('/')
                                     message.success(data.msg, [3])
                                 } else {
                                     message.error(data.errorMsg, [3])

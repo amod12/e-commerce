@@ -5,7 +5,6 @@ import {useDispatch, useSelector} from "react-redux"
 import {setLocation, setSenderLocationLatLng} from "../redux/reducers/locationSlice"
 import L from 'leaflet';
 import '../App.css'
-import { notification } from 'antd';
 
 const dragSenderMarker = L.icon({
   iconSize: [25, 41],
@@ -22,8 +21,8 @@ const Map = ()=> {
     const dispatch = useDispatch()
 
     const center = {
-      lat: 27.68564550564005,
-      lng: 85.3445145828365,
+      lat: lat,
+      lng: lng,
     }
 
     const geoCodeLatLng = async (lat, lng)=> {    
@@ -82,8 +81,8 @@ const Map = ()=> {
 
   return(
       <>
-      <MapContainer  center={lat ? [lat, lng] : [ 27.68564550564005,85.3445145828365]} zoom={10} scrollWheelZoom={false}
-                style={{ height: "60vh", width:"40vw" }}>
+      <MapContainer  center={lat ? [lat, lng] : [ lat, lng]} zoom={10} scrollWheelZoom={false}
+                style={{ height: "60vh", width:"80vw" }}>
                 <TileLayer
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

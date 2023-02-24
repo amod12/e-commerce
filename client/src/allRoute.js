@@ -24,16 +24,15 @@ const AllRoute=()=> {
   else if (role === 'admin' && token) {
     return <><NavBar /><AdminScreen /></>
   }
-  return <><AuthScreen /></>
+  return <><NavBar /><AuthScreen /></>
 }
 
 const AuthScreen=()=>{
   return (
     <Routes>
     <Route path="/register" element={<Register />} />
-    <Route path="/" element={<Login />} />
-    <Route path="*" element={<PageNotFound />} />
-    {/* <Route path="/" element={<UserDashboard />} /> */}
+    <Route path="/" element={<Items/>} />
+    <Route path="*" element={<Login />} />
 
   </Routes>
   )
