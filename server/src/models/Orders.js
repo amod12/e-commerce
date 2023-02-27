@@ -17,6 +17,8 @@ const ordersSchema = new mongoose.Schema(
     email: { type: String },
     pickupDate:{type:String},
     pickupTime:{type:String},
+    totalPrice: { type: Number },
+
   },
   { collection: "orders" }
 );

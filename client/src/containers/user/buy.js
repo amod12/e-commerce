@@ -10,7 +10,7 @@ import {message } from 'antd';
 import { useLocation } from 'react-router-dom'
 
 
-function Buy() {
+function Buy(props) {
   const usersSchema = Yup.object().shape({
     location: Yup.string()
       .min(1, "Too Short!")
@@ -55,9 +55,8 @@ function Buy() {
 
   return (
     <div>
-      {console.log(state, '@@')}
-
-      <Map />
+{      console.log(state)
+}      <Map />
       <div >    
             <Formik
             enableReinitialize
@@ -70,18 +69,19 @@ function Buy() {
                 location: location,
                 userId: _id,
                 quantity: 1,
-                orders: state.map((item)=>{
+                orders: state?.map((item)=>{
                     return {
                       catagoryName : item.catagoryName,
                       catagoryRole: item.catagoryRole,
                       price: item.price,
-                      image: item.image
+                      image: item.image,
+                      quantity: item.quantity
                      }
-                    })              
+                    }) ,  
+                totalPrice : props.itemPrice     
               }}
               validationSchema={usersSchema}
               onSubmit={async(values) => { 
-                {console.log(values, '@@@')}
 
                 const requestOptions = {
                    method: "POST",
@@ -92,7 +92,6 @@ function Buy() {
                   const data = await res.json()
                   const notify = responseHandler(res, data.errorMsg)
                   toast(notify)
-                  console.log(data.msg)
                   if (data) {
                     message.success(data.msg, [2])
                   } else {

@@ -2,9 +2,7 @@ import React,{useState} from 'react';
 import { useEffect } from 'react';
 import "../sharedScreen/cart.css";
 
-const CartCard = ({cart, setCart, }) => {
-    const [itemPrice, setItemPrice] = useState(0);
-    
+const CartCard = ({cart, setCart,  itemPrice, setItemPrice, total}) => {
     const addCart=(id)=>{
         const tempProductList = [...cart]
         tempProductList[id]['quantity']++
@@ -22,13 +20,7 @@ const CartCard = ({cart, setCart, }) => {
         }
       }
 
-    const total=()=>{
-        let a = 0
-        cart.map((item)=>{ 
-          a = (item.price * item.quantity) + a
-        })
-        return setItemPrice(a);
-      }
+    
     
     const handleRemove = (d) => {
         debugger
@@ -44,7 +36,7 @@ const CartCard = ({cart, setCart, }) => {
 
     useEffect(()=>{
         total();
-    }, [cart])
+    }, [])
 
   return (
     <article>
