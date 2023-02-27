@@ -56,6 +56,7 @@ function Buy() {
   return (
     <div>
       {console.log(state, '@@')}
+
       <Map />
       <div >    
             <Formik
@@ -69,14 +70,19 @@ function Buy() {
                 location: location,
                 userId: _id,
                 quantity: 1,
-                catagoryName: state.catagoryName,
-                catagoryRole: state.catagoryName,
-                price: state.price,
-                image: state.image,
-                role: state.catagoryRole
+                orders: state.map((item)=>{
+                    return {
+                      catagoryName : item.catagoryName,
+                      catagoryRole: item.catagoryRole,
+                      price: item.price,
+                      image: item.image
+                     }
+                    })              
               }}
               validationSchema={usersSchema}
-              onSubmit={async(values, { resetForm }) => { 
+              onSubmit={async(values) => { 
+                {console.log(values, '@@@')}
+
                 const requestOptions = {
                    method: "POST",
                    headers: { "Content-Type": "application/json" },
