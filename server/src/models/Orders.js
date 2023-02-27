@@ -4,6 +4,7 @@ const ordersSchema = new mongoose.Schema(
   {
     image:{type:String},
     catagoryName: { type: String },
+    catagoryRole:{type: String},
     price: { type: Number },
     orderStatus: { type: String, default:'Pending' },
     name:{type: String},

@@ -61,7 +61,7 @@ function Buy() {
             <Formik
             enableReinitialize
             // due to this(above) location is being used like useState 
-              initialValues={{
+              initialValues={{ 
                 name: name,
                 address: address,
                 email: email,
@@ -70,8 +70,10 @@ function Buy() {
                 userId: _id,
                 quantity: 1,
                 catagoryName: state.catagoryName,
+                catagoryRole: state.catagoryName,
                 price: state.price,
-                image: state.image
+                image: state.image,
+                role: state.catagoryRole
               }}
               validationSchema={usersSchema}
               onSubmit={async(values, { resetForm }) => { 

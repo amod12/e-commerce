@@ -28,7 +28,6 @@ export default function Search() {
   useEffect(() => {
     fetchAvailableItems()
   }, [value]) 
-  {console.log(validItems)}
   
 
   return (
