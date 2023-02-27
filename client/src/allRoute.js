@@ -60,7 +60,6 @@ const AdminScreen=()=>{
 
 const UserScreen=()=>{
   const [cart, setCart] = useState([]);
-
   const handleClick = (item) => {
     let added;
     cart.map((cart)=>{
@@ -80,6 +79,14 @@ const UserScreen=()=>{
     }
   };
 
+  const [itemPrice, setItemPrice] = useState(0);
+    const total=()=>{
+        let a = 0
+        cart.map((item)=>{ 
+          a = (item.price * item.quantity) + a
+        })
+        return setItemPrice(a);
+      }
  
   return(
     <Routes>
@@ -89,9 +96,9 @@ const UserScreen=()=>{
     <Route path="*" element={<PageNotFound />} />
     <Route path="/profile" element={<Profile />} />
     <Route path="/itemPage" element={<ItemPage handleClick={handleClick} />} />
-    <Route path="/buy" element={<Buy />} />
+    <Route path="/buy" element={<Buy itemPrice={itemPrice}/>} />
     <Route path="/orders" element={<UserOrder />} />
-    <Route path="/cart" element={<Cart cart={cart} setCart={setCart} />} />
+    <Route path="/cart" element={<Cart cart={cart} setCart={setCart} itemPrice={itemPrice} setItemPrice={setItemPrice} total={total}/>} />
     <Route path="/eg" element={<MainComponent />} />
   </Routes>
   )

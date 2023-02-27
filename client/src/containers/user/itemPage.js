@@ -14,7 +14,7 @@ function ItemPage({handleClick}) {
     navigate('/login'); 
   } 
   else {
-    navigate('/buy',  { state: state });  }
+    navigate('/buy',  { state: [state] });  }
   }
   return (
     <>

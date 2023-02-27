@@ -7,7 +7,7 @@ import { message,Popconfirm } from 'antd';
 import io from 'socket.io-client';
 const socket = io(process.env.REACT_APP_API_URL);
 
-
+ 
 const UserOrder = () => {
   const {role, _id, token} =useSelector(state=>state.user)
   const [orders, setOrders]= useState([])
@@ -33,6 +33,7 @@ const UserOrder = () => {
   if(res.status===200){
     fetchAvailableItems()
     message.success("Orders deleted successfully",[2])
+    console.log(res)
   }
   }
 
