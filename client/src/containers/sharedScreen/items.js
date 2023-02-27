@@ -29,15 +29,12 @@ function Items() {
   };
  
   const [validItems, setvalidItems] = useState([])
-    const fetchAvailableItems= ()=>{
-      
+    const fetchAvailableItems= ()=>{  
         axios.get(`${process.env.REACT_APP_API_URL}/items/${category || ""}`).then((response) => {
-            setvalidItems(response.data.validItemOptions)
-           
+            setvalidItems(response.data.validItemOptions)      
           });      
     }
-    console.log(items)
-    console.log(category)
+    
     useEffect(()=>{
       {items === undefined? 
         fetchAvailableItems(): setvalidItems(items)}
@@ -61,7 +58,7 @@ function Items() {
       <div class="flex-container">
     {validItems.map((item)=>{
        return(
-         <Card item={item} role={role} fetchAvailableItems={fetchAvailableItems}/>
+         <Card item={item} role={role} fetchAvailableItems={fetchAvailableItems} />
          )
     })}
     </div>

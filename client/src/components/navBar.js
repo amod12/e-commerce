@@ -57,6 +57,9 @@ const NavBar = () => {
       case 'food':
         navigate('/',{ state: { key: 'category', data: 'food' }});
         break; 
+        case 'cart':
+          navigate('/cart');
+          break; 
      
     default:
         break;
@@ -91,7 +94,7 @@ const NavBar = () => {
 
       {label: 'Login', key: 'login', },
       {label: 'Register', key: 'register', },
-      {label:  <div><FontAwesomeIcon icon={faCartPlus} />Cart</div>, key: 'home', },
+      {label:  <div><FontAwesomeIcon icon={faCartPlus} />Cart</div>, key: 'cart', },
 
       {label:<div> <FontAwesomeIcon icon={faUser} ></FontAwesomeIcon>Profile</div> , key: 'profile',children:[
         {label: <div>{name || 'name'}</div>, key: 'profile'},

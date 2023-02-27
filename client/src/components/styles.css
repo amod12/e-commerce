@@ -19,6 +19,8 @@
     border: 1px solid gray;
     border-radius: 10px 15px 15px 10px;
     padding-left: 22px;
+    width: 25vw;
+
   }
   
   .dropdown:empty {
@@ -29,7 +31,7 @@
   .dropdown-row {
     text-align: start;
     margin: 2px 0;
-    width: 30vw;
+    width: 25vw;
 
   }
   
@@ -37,6 +39,6 @@
     width: 30vw;
   }
   
-  .search-inner {
+  .search-inner { 
     display: flex;
   }

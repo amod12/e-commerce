@@ -1,9 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { CustomButton } from '../../components/customButton'
 import { useSelector } from 'react-redux'
 import { useNavigate,useLocation } from 'react-router-dom' 
 
-function ItemPage() {
+function ItemPage({handleClick}) {
+ 
+
   const {state} = useLocation();
   const { email }= useSelector(state=>state.user)
    const navigate = useNavigate()
@@ -16,8 +18,7 @@ function ItemPage() {
   }
   return (
     <>
-{    console.log(state)
-}    <div>
+    <div>
       <img src={state.image} alt="Logo" width={400} /> <br/>  
       {state.catagoryName} <br/>  
       {state.price}<br/>
@@ -31,8 +32,8 @@ function ItemPage() {
       />
     <CustomButton
         name="Add to Cart"
-        onClick={null}
-       
+        onClick={()=>handleClick(state)}
+              
       />
     </>
   )
