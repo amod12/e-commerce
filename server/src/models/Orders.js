@@ -18,6 +18,8 @@ const ordersSchema = new mongoose.Schema(
     pickupDate:{type:String},
     pickupTime:{type:String},
     totalPrice: { type: Number },
+    quantity: { type: Number },
+
 
   },
   { collection: "orders" }

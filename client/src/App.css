@@ -160,7 +160,7 @@ select {
 }
 
 /* style for button */
-.button {
+/* .button {
   background-color: rgb(94, 162, 245);
   padding: 3%;
   border: none;
@@ -169,6 +169,29 @@ select {
   font-weight: 400;
   font-size: 1.1rem;
   margin-top: 25px;
+} */
+
+
+.formcenter{
+  margin-left: 30%;
+}
+
+.mapcenter{
+  margin-left: 5%;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  margin-left:100px;
+  margin-top: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  width: 15vw;
 }
 
 /* card page styling  from card*/
@@ -676,4 +699,19 @@ select {
   border-bottom: none !important;
 }
 
+.container{
+  margin:50px 50px;
+}
 
+.img_made{
+  margin-left: 100px;
+  width: 80%;
+  height: 400px;
+  align-items: center;
+  object-fit: fill;
+}
+
+.list{
+ margin-left: 100px;
+ 
+}

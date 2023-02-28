@@ -32,7 +32,7 @@ export default function Search() {
 
   return (
     <div className="App">
-      <div className="search-container">
+      <div className="search-container ">
       <div className='search' >
       <input type="search" className='search_box' placeholder='Search' style={{marginTop: -1}}
        onChange={onChange}
@@ -41,6 +41,8 @@ export default function Search() {
 
     </div>
         { validItems.length !== 0 && value !== ''?
+        <div class="dropdown1">
+        <div class="dropdown-content">
         <div className="dropdown" >
           {validItems        
             .map((item) => (
@@ -53,7 +55,10 @@ export default function Search() {
                 {item.catagoryName}
               </div>
             ))}
-        </div>: null}
+        </div>
+        </div>
+        </div>
+        : null}
       </div>
     </div>
   );

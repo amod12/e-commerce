@@ -3,14 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from "axios";
 import OrdersCard from "./adminComponents/orderCard";
 import { Pagination } from 'antd';
-// import Loading from "./loading";
 import io from 'socket.io-client';
 const socket = io(process.env.REACT_APP_API_URL);
 
 const AdminOrder = (props) => {
   const { token, role } = useSelector(state => state.user)
   const [orders, setOrders] = useState([])
-  const [loading, setLoading] = useState(false)
   const [ordersCount, setTotalOrdersCount] = useState(0)
 
   useEffect(() => {
@@ -29,7 +27,6 @@ const AdminOrder = (props) => {
       setTotalOrdersCount(response.data.totalOrdersCount)
       
     });
-    // setLoading(false)
   }
   useEffect(() => {
     fetchAvailableItems()
@@ -37,18 +34,15 @@ const AdminOrder = (props) => {
 
   return (
     <>
-      {/* {!loading && orders.length > 0 ? ( */}
         <>
           <div className="order-list-box" >
             <h3 >Order List</h3>
             {orders.map((item, id) => {
-              console.log(item)
               return <OrdersCard item={item} key={id}  />
             })}
             <Pagination className="pagination" total={ordersCount} onChange={(page, size) => fetchAvailableItems(page, size)} />
           </div>
         </>
-      {/* // ) : <Loading />} */}
     </>
   )
 }

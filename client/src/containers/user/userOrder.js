@@ -11,6 +11,30 @@ const socket = io(process.env.REACT_APP_API_URL);
 const UserOrder = () => {
   const {role, _id, token} =useSelector(state=>state.user)
   const [orders, setOrders]= useState([])
+  console.log(orders)
+  
+  const splitOrder = [];
+
+  orders.forEach((obj) => {
+   obj.orders.forEach((order) => {
+    splitOrder.push({
+       catagoryName: [order][0].catagoryName,
+       price: [order][0].price,
+       orderStatus: obj.orderStatus,
+       name: obj.name,
+       userId: obj.userId,
+       phone: obj.phone,
+       address: obj.address,
+       email:  obj.email,
+       pickupDate:  obj.pickupDate,
+       pickupTime:  obj.pickupTime,
+       totalPrice:  obj.totalPrice,
+     });
+   });
+ });
+
+console.log(splitOrder);
+
   useEffect(async()=>{
     await socket.on('orderRequest',(orderRequest)=>{
       const bckUpOrderList = [...orders]
@@ -30,10 +54,10 @@ const UserOrder = () => {
     body: JSON.stringify({_id: id}),
   };
   const res = await fetch(`${process.env.REACT_APP_API_URL}/orders`,requestOptions);
+  
   if(res.status===200){
     fetchAvailableItems()
     message.success("Orders deleted successfully",[2])
-    console.log(res)
   }
   }
 
@@ -65,15 +89,15 @@ const columns = [
   },
   {
     title: 'Phone Number',
-    dataIndex: "phone",
+    dataIndex: "phone"
   },
   {
     title: 'Item Name',
-    dataIndex: "catagoryName",
+    dataIndex: 'catagoryName'
   },
   {
-    title: 'Quantity',
-    dataIndex: 'quantity',
+    title: 'Price',
+    dataIndex: 'price',
   },
   {
     title: 'Status',
@@ -135,7 +159,7 @@ useEffect( ()=>{
       </Modal>
 
       <div>
-      <Table dataSource={orders} columns={columns} />;
+      <Table dataSource={splitOrder} columns={columns} />;
       </div>
     </>
   );
