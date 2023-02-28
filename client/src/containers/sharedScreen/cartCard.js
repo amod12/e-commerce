@@ -23,7 +23,6 @@ const CartCard = ({cart, setCart,  itemPrice, setItemPrice, total}) => {
     
     
     const handleRemove = (d) => {
-        debugger
         const arr = cart.filter((item , id) => {
             console.log(id)
            if(id !== d){

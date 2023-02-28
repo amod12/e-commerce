@@ -8,6 +8,7 @@ import {toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import {message } from 'antd'; 
 import { useLocation } from 'react-router-dom'
+import "../../App.css"
 
 
 function Buy(props) {
@@ -54,10 +55,10 @@ function Buy(props) {
   
 
   return (
-    <div>
+    <div className='container'>
 {      console.log(state)
-}      <Map />
-      <div >    
+}      <div className='mapcenter'><Map /></div>
+      <div className='formcenter'>    
             <Formik
             enableReinitialize
             // due to this(above) location is being used like useState 
@@ -68,14 +69,14 @@ function Buy(props) {
                 phone: phone,
                 location: location,
                 userId: _id,
-                quantity: 1,
+                quantity:  1,
                 orders: state?.map((item)=>{
                     return {
                       catagoryName : item.catagoryName,
                       catagoryRole: item.catagoryRole,
                       price: item.price,
                       image: item.image,
-                      quantity: item.quantity
+                      quantity: item.quantity 
                      }
                     }) ,  
                 totalPrice : props.itemPrice     
@@ -100,10 +101,10 @@ function Buy(props) {
              }}
             >
            {({  errors, touched }) => (
+            <div>
               <Form>
-
                 {buyFormFields.map(field => (
-                  <div key={field.name}>
+                  <div  style={{display: 'flex'}} key={field.name}>
                     <Field
                       type={field.name==="pickupDate"?'date':field.name==="pickupTime"?'time' :"text" }
                       name={field.name}
@@ -117,6 +118,7 @@ function Buy(props) {
                 ))}
                   <CustomButton name="Submit" type="submit" />
                 </Form>
+                </div>
               )}
             </Formik>
       </div>

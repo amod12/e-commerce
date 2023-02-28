@@ -9,17 +9,19 @@ function Cart({cart, setCart, itemPrice, setItemPrice, total }) {
 
   const checkIfLogedIn=()=>{   
       navigate('/buy',  { state: cart });  
+       setCart([])
     }
   return (
     <>
-    <div>
-        orders={cart.length}
+    <h1 style={{textAlign: 'center'}}> You have {cart.length} orders. </h1>
         <CartCard cart={cart} setCart={setCart} itemPrice={itemPrice} setItemPrice={setItemPrice} total={total} />
-    </div>
+   
+   <h1 style={{marginLeft: '30%'}}> 
     <CustomButton
         name="Buy"
         onClick={checkIfLogedIn}
         />
+        </h1>
     </>
   )
 }
