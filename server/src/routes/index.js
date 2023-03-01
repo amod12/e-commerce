@@ -3,7 +3,7 @@ const app = express()
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-const Orders=require('./models/Orders')
+const Orders=require('../models/Orders')
 
 const io = new Server(server,{
   cors: {
@@ -12,10 +12,10 @@ const io = new Server(server,{
 });
 
 const cors = require('cors')
-const connect = require('./db/connect')
-const usersRouter = require('./routes/usersRouter')
-const ordersRouter = require('./routes/ordersRouter')
-const itemsRouter = require('./routes/itemsRouter')
+const connect = require('../db/connect')
+const usersRouter = require('./usersRouter')
+const ordersRouter = require('./ordersRouter')
+const itemsRouter = require('./itemsRouter')
 require('dotenv').config()
 
 io.on('connection', (socket) => {
