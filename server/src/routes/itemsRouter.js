@@ -64,7 +64,7 @@ router.delete("/items", async (req, res) => {
   }
   });
 
-router.get('/items/:name', async(req, res) => {
+router.get('/items/:name', async(req, res) => { 
   const items = req.params.name; // get the name from the URL parameter
   // perform a database query or some other logic to find the resource by name
   const data = await Items.find({catagoryRole:items});
