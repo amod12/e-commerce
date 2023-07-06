@@ -35,7 +35,7 @@ const AllRoute=()=> {
 const AuthScreen=()=>{
   return (
     <Routes>
-    <Route path="/register" element={<Register />} />
+    <Route path="/register" element={<Register />} /> 
     <Route path="/" element={<Items/>} />
     <Route path="*" element={<Login />} />
 

@@ -29,7 +29,7 @@ const Profile = () => {
       .then((response) => {
         setUserDetails(response.data.userDetails);
       });
-  };
+  }; 
   useEffect(() => {
     fetchUserDetails();
   }, []);

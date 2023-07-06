@@ -19,4 +19,4 @@ const locationSlice = createSlice({
 });
 
 export const { setSenderLocationLatLng, setLocation } = locationSlice.actions;
-export default locationSlice.reducer;
+export default locationSlice.reducer; 

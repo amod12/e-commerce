@@ -22,7 +22,7 @@ const userSlice = (state = initialState, action) => {
         name,
         role,
         token,
-        email,
+        email, 
         phone,
         address,
         _id

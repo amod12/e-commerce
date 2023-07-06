@@ -22,7 +22,7 @@ function Items() {
   const {role} = useSelector(state=> state.user)
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
-    setIsModalOpen(true);
+    setIsModalOpen(true); 
   };
   const handleCancel = () => {
     setIsModalOpen(false);

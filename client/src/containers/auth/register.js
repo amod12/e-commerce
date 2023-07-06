@@ -58,6 +58,32 @@ const Register = () => {
   
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(true)
+  const sendEmail =(data)=>{
+    fetch(`${process.env.REACT_APP_API_URL}/send-email`, {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                      to: data.email,
+                      // in above the sender email is written
+                      subject: 'Email Subject',
+                      text: 'Registered'
+                    })
+                  })
+                  .then(response => {
+                    if (!response.ok) {
+                      throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                  })
+                  .then(data => {
+                    console.log(data);
+                  })
+                  .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                  });
+  }
   return (
     <>
     <div className='registerBackground'>  

@@ -12,7 +12,7 @@ const reducer = combineReducers({
 
 });
 
-const persistConfig = {
+const persistConfig = { 
   key: 'root',
   storage,
 }
